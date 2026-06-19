@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -100,6 +100,8 @@ export default function Dashboard() {
                 <h1>Notes</h1>
 
                 <div className="navbar-user">
+
+                    <Link to="/landing" className="btn ghost">Home</Link>
 
                     <span>Welcome, <strong>{user?.username}</strong></span>
 

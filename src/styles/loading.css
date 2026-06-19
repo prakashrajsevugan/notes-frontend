@@ -1,0 +1,49 @@
+/* Loading page styles */
+.loading-root {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #D0DED4 0%, #e8f1ed 100%);
+}
+
+.loading-card {
+    width: 100%;
+    max-width: 640px;
+    padding: 36px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.6);
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(31,38,135,0.06);
+}
+
+.loading-card h2 {
+    margin-bottom: 18px;
+    color: #154235;
+}
+
+.progress-wrap {
+    height: 16px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 auto 12px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(208,222,212,1) 0%, rgba(34,139,34,0.8) 100%);
+    transition: width 0.1s linear;
+}
+
+.progress-text {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+@media (max-width: 600px) {
+    .loading-card { padding: 20px; border-radius: 12px }
+}

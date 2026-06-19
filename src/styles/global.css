@@ -48,3 +48,18 @@ a:hover {
     color: #1e40af;
     text-decoration: underline;
 }
+
+/* shared button styles used across pages */
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn.ghost {
+    background: transparent;
+    color: #154235;
+    border: 1px solid rgba(31,58,47,0.08);
+}

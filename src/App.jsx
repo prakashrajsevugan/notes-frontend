@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import AddNote from "./pages/AddNote";
 import EditNote from "./pages/EditNote";
 import NotFound from "./pages/NotFound";
+import Landing from "./pages/Landing";
+import Loading from "./pages/Loading";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -17,12 +19,22 @@ function App() {
 
             <Route
                 path="/"
-                element={<Navigate to="/dashboard" />}
+                element={<Loading />}
+            />
+
+            <Route
+                path="/landing"
+                element={<Landing />}
             />
 
             <Route
                 path="/login"
                 element={<Login />}
+            />
+
+            <Route
+                path="/loading"
+                element={<Loading />}
             />
 
             <Route
