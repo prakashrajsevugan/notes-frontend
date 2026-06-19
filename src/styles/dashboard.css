@@ -1,17 +1,19 @@
 .dashboard {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #D0DED4 0%, #e8f1ed 100%);
 }
 
 .navbar {
     height: 75px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: rgba(208, 222, 212, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    color: #2c3e50;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -36,19 +38,20 @@
 
 .logout-btn {
     background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid white;
+    color: #2c3e50;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .logout-btn:hover {
-    background: white;
-    color: #667eea;
+    background: rgba(255, 255, 255, 0.5);
+    color: #2c3e50;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -60,11 +63,13 @@
 }
 
 .add-form {
-    background: white;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 18px;
     margin-bottom: 35px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
 }
 
 .add-form h3 {
@@ -78,21 +83,23 @@
     width: 100%;
     padding: 14px 16px;
     margin-bottom: 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    background: #f9fafb;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+        color: #2c3e50;
     font-size: 14px;
 }
 
 .add-form input::placeholder,
 .add-form textarea::placeholder {
-    color: #9ca3af;
+    color: rgba(44, 62, 80, 0.5);
 }
 
 .add-form input:hover,
 .add-form textarea:hover {
-    border-color: #d1d5db;
-    background: #f3f4f6;
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.45);
 }
 
 .add-form textarea {
@@ -101,18 +108,20 @@
 }
 
 .add-form button {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
-    border: none;
+    background: rgba(208, 222, 212, 0.6);
+    color: #2c3e50;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
     padding: 14px 30px;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
+        backdrop-filter: blur(10px);
     font-weight: 600;
 }
 
 .add-form button:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    background: rgba(208, 222, 212, 0.8);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 25px rgba(208, 222, 212, 0.3);
     transform: translateY(-2px);
 }
 
@@ -123,20 +132,22 @@
 }
 
 .note-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
 }
 
 .note-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border-color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 .note-card h3 {
@@ -180,23 +191,29 @@
 }
 
 .edit-btn {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
+    background: rgba(59, 130, 246, 0.3);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.5) !important;
+    backdrop-filter: blur(10px);
 }
 
 .edit-btn:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.5);
+    border-color: rgba(59, 130, 246, 0.8) !important;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
 }
 
 .delete-btn {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
+    background: rgba(239, 68, 68, 0.3);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.5) !important;
+    backdrop-filter: blur(10px);
 }
 
 .delete-btn:hover {
-    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.5);
+    border-color: rgba(239, 68, 68, 0.8) !important;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
 }
 
 .empty {

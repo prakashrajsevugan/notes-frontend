@@ -97,7 +97,7 @@ export default function Dashboard() {
 
             <div className="navbar">
 
-                <h1>📝 Notes</h1>
+                <h1>Notes</h1>
 
                 <div className="navbar-user">
 
@@ -155,7 +155,6 @@ export default function Dashboard() {
 
                             <div className="empty">
 
-                                <div className="empty-icon">📭</div>
 
                                 <h2>No Notes Yet</h2>
 

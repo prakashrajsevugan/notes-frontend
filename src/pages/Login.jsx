@@ -51,7 +51,7 @@ export default function Login() {
 
             <div className="auth-card">
 
-                <h2>🔐 Login</h2>
+                <h2>Sign In</h2>
 
                 {error && <p className="error">{error}</p>}
 
@@ -60,7 +60,7 @@ export default function Login() {
                     <input
                         type="email"
                         name="email"
-                        placeholder="📧 Email"
+                        placeholder="Email"
                         onChange={handleChange}
                         required
                     />
@@ -68,13 +68,13 @@ export default function Login() {
                     <input
                         type="password"
                         name="password"
-                        placeholder="🔒 Password"
+                        placeholder="Password"
                         onChange={handleChange}
                         required
                     />
 
                     <button>
-                        🔓 Sign In
+                        Sign In
                     </button>
 
                 </form>

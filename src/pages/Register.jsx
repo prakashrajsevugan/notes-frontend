@@ -58,7 +58,7 @@ export default function Register() {
 
             <div className="auth-card">
 
-                <h2>✨ Create Account</h2>
+                <h2>Create Account</h2>
 
                 {error && <p className="error">{error}</p>}
 
@@ -66,7 +66,7 @@ export default function Register() {
 
                     <input
                         name="username"
-                        placeholder="👤 Username"
+                        placeholder="Username"
                         onChange={handleChange}
                         required
                     />
@@ -74,7 +74,7 @@ export default function Register() {
                     <input
                         type="email"
                         name="email"
-                        placeholder="📧 Email"
+                        placeholder="Email"
                         onChange={handleChange}
                         required
                     />
@@ -82,13 +82,13 @@ export default function Register() {
                     <input
                         type="password"
                         name="password"
-                        placeholder="🔒 Password"
+                        placeholder="Password"
                         onChange={handleChange}
                         required
                     />
 
                     <button>
-                        📝 Sign Up
+                        Sign Up
                     </button>
 
                 </form>

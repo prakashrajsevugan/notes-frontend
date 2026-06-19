@@ -10,7 +10,7 @@ function NoteCard({ note, onDelete, onEdit }) {
             <p>{note.description}</p>
 
             <div className="note-date">
-                📅 {format(new Date(note.createdAt), "dd MMMM yyyy")}
+                {format(new Date(note.createdAt), "dd MMMM yyyy")}
             </div>
 
             <div className="card-buttons">
@@ -19,14 +19,14 @@ function NoteCard({ note, onDelete, onEdit }) {
                     className="edit-btn"
                     onClick={() => onEdit && onEdit(note)}
                 >
-                    ✏️ Edit
+                    Edit
                 </button>
 
                 <button
                     className="delete-btn"
                     onClick={() => onDelete(note.id)}
                 >
-                    🗑️ Delete
+                    Delete
                 </button>
 
             </div>
