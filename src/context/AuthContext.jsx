@@ -1,58 +1,57 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import * as authService from "../services/authService";
+import { createContext, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { ClerkProvider, useUser, useClerk, useAuth as useClerkAuth } from "@clerk/clerk-react";
+import { setGetToken } from "../services/api";
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+function AuthProviderContent({ children }) {
+    const { isLoaded, isSignedIn, user: clerkUser } = useUser();
+    const { signOut } = useClerk();
+    const { getToken } = useClerkAuth();
 
     useEffect(() => {
+        setGetToken(getToken);
+    }, [getToken]);
 
-        const token = localStorage.getItem("token");
+    const user = isLoaded && isSignedIn && clerkUser ? {
+        id: clerkUser.id,
+        username: clerkUser.username || clerkUser.firstName || clerkUser.emailAddresses[0]?.emailAddress.split("@")[0] || "User",
+        email: clerkUser.emailAddresses[0]?.emailAddress || "",
+    } : null;
 
-        if (!token) {
-            setLoading(false);
-            return;
-        }
-
-        authService.getCurrentUser()
-            .then((res) => {
-                setUser(res.data.user);
-            })
-            .catch(() => {
-                localStorage.removeItem("token");
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-
-    }, []);
-
-    const login = (token, user) => {
-        localStorage.setItem("token", token);
-        setUser(user);
-    };
-
-    const logout = () => {
-        localStorage.removeItem("token");
-        setUser(null);
+    const logout = async () => {
+        await signOut();
     };
 
     return (
         <AuthContext.Provider
             value={{
                 user,
-                login,
+                login: () => {},
                 logout,
-                loading
+                loading: !isLoaded
             }}
         >
             {children}
         </AuthContext.Provider>
     );
+}
 
+export function AuthProvider({ children }) {
+    const navigate = useNavigate();
+
+    if (!PUBLISHABLE_KEY) {
+        throw new Error("Missing Clerk Publishable Key in frontend environment variables.");
+    }
+
+    return (
+        <ClerkProvider publishableKey={PUBLISHABLE_KEY} navigate={navigate}>
+            <AuthProviderContent>{children}</AuthProviderContent>
+        </ClerkProvider>
+    );
 }
 
 export const useAuth = () => useContext(AuthContext);

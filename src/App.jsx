@@ -28,7 +28,7 @@ function App() {
             />
 
             <Route
-                path="/login"
+                path="/login/*"
                 element={<Login />}
             />
 
@@ -38,7 +38,7 @@ function App() {
             />
 
             <Route
-                path="/register"
+                path="/register/*"
                 element={<Register />}
             />
 
