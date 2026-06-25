@@ -17,7 +17,7 @@ function BookScene() {
     });
 
     return (
-        <group ref={groupRef} position={[0, -2.4, 0]} scale={0.2}>
+        <group ref={groupRef} position={[0, -0.5, 0]} scale={0.16}>
             <Float speed={1.5} rotationIntensity={0.18} floatIntensity={0.28}>
                 <Book />
             </Float>
@@ -34,6 +34,14 @@ export default function Loading() {
     const [showLoadingUI, setShowLoadingUI] = useState(false);
     const uiDelay = useMemo(() => 260, []);
 
+    const getStatusText = (pct) => {
+        if (pct < 20) return "Initializing secure session handshake...";
+        if (pct < 45) return "Connecting with Clerk authorization servers...";
+        if (pct < 65) return "Opening cloud PostgreSQL connection pools...";
+        if (pct < 85) return "Hydrating notes database schema & rules...";
+        return "Launching creative glassmorphic workspace...";
+    };
+
     useEffect(() => {
         const obj = { value: 0 };
 
@@ -43,7 +51,7 @@ export default function Loading() {
 
         const tween = gsap.to(obj, {
             value: 100,
-            duration: 6,
+            duration: 5,
             ease: "power2.out",
             onUpdate: () => {
                 const v = Math.round(obj.value);
@@ -85,28 +93,42 @@ export default function Loading() {
                     <directionalLight intensity={2.2} position={[6, 8, 6]} />
                     <spotLight intensity={1.2} position={[-7, 9, 8]} angle={0.45} penumbra={0.4} />
 
-                    <Suspense fallback={null}>
-                        <BookScene />
-                    </Suspense>
+                  <Suspense fallback={null}>
+                      <BookScene />
+                  </Suspense>
 
-                    <OrbitControls
-                        enableZoom={false}
-                        enablePan={false}
-                        autoRotate
-                        autoRotateSpeed={0.45}
-                        maxPolarAngle={Math.PI / 1.9}
-                        minPolarAngle={Math.PI / 2.8}
-                    />
-                </Canvas>
-            </div>
+                  <OrbitControls
+                      enableZoom={false}
+                      enablePan={false}
+                      autoRotate
+                      autoRotateSpeed={0.6}
+                      maxPolarAngle={Math.PI / 1.9}
+                      minPolarAngle={Math.PI / 2.8}
+                  />
+              </Canvas>
+          </div>
 
-            <div className={`loading-overlay ${showLoadingUI ? "show" : ""}`}>
-                <h2>Preparing your dashboard</h2>
-                <div className="progress-wrap">
-                    <div className="progress-bar" ref={barRef}></div>
-                </div>
-                <div className="progress-text">{percent}%</div>
-            </div>
-        </div>
-    );
+          <div className={`loading-overlay ${showLoadingUI ? "show" : ""}`}>
+              <div className="loading-hud-header">
+                  <div className="hud-pulse-container">
+                      <div className="hud-radar-circle"></div>
+                      <div className="hud-radar-dot"></div>
+                  </div>
+                  <h2>Preparing Workspace</h2>
+              </div>
+              
+              <p className="loading-status-text">{getStatusText(percent)}</p>
+              
+              <div className="progress-wrap">
+                  <div className="progress-bar" ref={barRef}></div>
+              </div>
+              
+              <div className="progress-info-row">
+                  <span className="progress-loading-indicator">Active Connection</span>
+                  <span className="progress-text">{percent}%</span>
+              </div>
+          </div>
+      </div>
+  );
 }
+

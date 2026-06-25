@@ -1,14 +1,19 @@
-/* Loading page styles */
+/* Loading Page Styles - Full Screen 3D and Frosted HUD */
 .loading-root {
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, #D0DED4 0%, #e8f1ed 100%);
 }
 
 .loading-canvas-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    z-index: 1;
 }
 
 .loading-canvas-wrap canvas {
@@ -17,65 +22,152 @@
     display: block;
 }
 
+/* Frosted HUD console card centered */
 .loading-overlay {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    width: min(420px, calc(100vw - 32px));
-    padding: 18px 18px 14px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.45);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.68);
-    box-shadow: 0 14px 42px rgba(31,38,135,0.12);
-    z-index: 40;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -46%) scale(0.96);
+    width: min(460px, calc(100vw - 32px));
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 50px rgba(31, 38, 135, 0.12), 
+                inset 0 0 14px rgba(255, 255, 255, 0.15);
+    z-index: 10;
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
 }
 
 .loading-overlay.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+/* HUD Header with Radar Beacons */
+.loading-hud-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.hud-pulse-container {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hud-radar-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(21, 66, 53, 0.2);
+    animation: pulse-radar 2s infinite ease-out;
+}
+
+.hud-radar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #154235;
+    z-index: 2;
+    box-shadow: 0 0 8px rgba(21, 66, 53, 0.4);
+}
+
+@keyframes pulse-radar {
+    0% {
+        transform: scale(0.6);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
 }
 
 .loading-overlay h2 {
-    margin-bottom: 18px;
     color: #154235;
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
 }
 
+/* Status messaging output */
+.loading-status-text {
+    font-size: 14px;
+    color: #3f5d51;
+    font-weight: 500;
+    margin-top: 6px;
+    margin-bottom: 24px;
+    min-height: 22px;
+    opacity: 0.95;
+    transition: all 0.3s ease;
+}
+
+/* Progress bar styles */
 .progress-wrap {
-    height: 14px;
-    background: rgba(0,0,0,0.07);
-    border-radius: 12px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
     overflow: hidden;
-    margin: 0 auto 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .progress-bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, rgba(208,222,212,1) 0%, rgba(34,139,34,0.8) 100%);
+    background: linear-gradient(90deg, #a7c5b3 0%, #154235 100%);
+    box-shadow: 0 0 12px rgba(21, 66, 53, 0.35);
     transition: width 0.1s linear;
+    border-radius: 6px;
+}
+
+.progress-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-loading-indicator {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(21, 66, 53, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .progress-text {
-    font-weight: 700;
-    color: #184233;
-    text-align: right;
+    font-size: 14px;
+    font-weight: 800;
+    color: #154235;
 }
 
-@media (max-width: 600px) {
+/* Responsive adjustments */
+@media (max-width: 500px) {
     .loading-overlay {
-        right: 12px;
-        bottom: 12px;
         width: calc(100vw - 24px);
-        padding: 14px;
+        padding: 24px;
     }
-
+    
     .loading-overlay h2 {
-        font-size: 17px;
-        margin-bottom: 12px;
+        font-size: 19px;
+    }
+    
+    .loading-status-text {
+        font-size: 13px;
+        margin-bottom: 18px;
     }
 }

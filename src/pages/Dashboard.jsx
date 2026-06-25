@@ -10,6 +10,7 @@ import {
 } from "../services/noteService";
 
 import NoteCard from "../components/NoteCard";
+import Footer from "../components/Footer";
 
 import "../styles/dashboard.css";
 
@@ -133,7 +134,7 @@ export default function Dashboard() {
 
         logout();
 
-        navigate("/login");
+        navigate("/");
 
     };
 
@@ -275,6 +276,8 @@ export default function Dashboard() {
                 </div>
 
             </div>
+
+            <Footer />
 
         </div>
 

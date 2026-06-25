@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getNote, updateNote } from "../services/noteService";
+import Footer from "../components/Footer";
 import "../styles/dashboard.css";
 
 export default function EditNote() {
@@ -189,6 +190,7 @@ export default function EditNote() {
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 }
