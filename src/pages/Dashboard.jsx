@@ -174,6 +174,7 @@ export default function Dashboard() {
                                     key={note.id}
                                     note={note}
                                     onDelete={handleDelete}
+                                    onEdit={(n) => navigate(`/edit-note/${n.id}`)}
                                 />
 
                             ))
