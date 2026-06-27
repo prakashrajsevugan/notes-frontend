@@ -9,6 +9,27 @@ import { Book } from "../components/Book";
 
 function BookScene() {
     const groupRef = useRef(null);
+    const [scale, setScale] = useState(0.16);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 600) {
+                setScale(0.1);
+            } else if (width < 900) {
+                setScale(0.05);
+            } else {
+                setScale(0.16);
+            }
+        };
+
+        handleResize(); // Set initial scale based on current window size
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     useFrame((state, delta) => {
         if (!groupRef.current) return;
@@ -17,7 +38,7 @@ function BookScene() {
     });
 
     return (
-        <group ref={groupRef} position={[0, -0.5, 0]} scale={0.16}>
+        <group ref={groupRef} position={[0, -0.5, 0]} scale={scale}>
             <Float speed={1.5} rotationIntensity={0.18} floatIntensity={0.28}>
                 <Book />
             </Float>
@@ -93,7 +114,7 @@ export default function Loading() {
                     <directionalLight intensity={2.2} position={[6, 8, 6]} />
                     <spotLight intensity={1.2} position={[-7, 9, 8]} angle={0.45} penumbra={0.4} />
 
-                  <Suspense fallback={null}>
+                  <Suspense fallback={null} >
                       <BookScene />
                   </Suspense>
 
